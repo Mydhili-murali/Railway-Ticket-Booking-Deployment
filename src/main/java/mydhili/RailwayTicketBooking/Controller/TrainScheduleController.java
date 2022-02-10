@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.sql.Date;
 import java.sql.Time;
 
@@ -22,34 +23,43 @@ public class TrainScheduleController {
     private TrainScheduleService trainScheduleService;
 
     //for user to view train schedule
-    @RequestMapping("/{userName}/trainSchedule/{trainNumber}")
-    public String trainSchedule(@PathVariable String userName, @PathVariable String trainNumber, Model model) {
+    @RequestMapping("/trainSchedule/{trainNumber}")
+    public String trainSchedule(Principal principal, @PathVariable String trainNumber, Model model) {
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
         model.addAttribute("schedules", trainScheduleService.trainScheduleDetails(trainNumber));
-        model.addAttribute("userName", userName);
         Trains trains = trainsService.getByTrainNumber(trainNumber);
         model.addAttribute("trainName", trains.getTrainName());
         return "trainSchedule";
     }
 
     //for admin to view train schedule
-    @RequestMapping("/{userName}/adminViewTrainSchedule/{trainNumber}")
-    public String adminViewTrainSchedule(@PathVariable String userName, @PathVariable String trainNumber, Model model) {
+    @RequestMapping("/adminViewTrainSchedule/{trainNumber}")
+    public String adminViewTrainSchedule(Principal principal, @PathVariable String trainNumber, Model model) {
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
         model.addAttribute("schedules", trainScheduleService.trainScheduleDetails(trainNumber));
-        model.addAttribute("userName", userName);
         Trains trains = trainsService.getByTrainNumber(trainNumber);
         model.addAttribute("trainName", trains.getTrainName());
         return "adminViewTrainSchedule";
     }
 
     //admin updates train schedule
-    @RequestMapping("/{userName}/updateTrainSchedule/{id}")
-    public String updateTrainScheduleForm(@PathVariable String userName, @PathVariable Long id, Model model) {
-        model.addAttribute("userName", userName);
+    @RequestMapping("/updateTrainSchedule/{id}")
+    public String updateTrainScheduleForm(Principal principal, @PathVariable Long id, Model model) {
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
         model.addAttribute("trainSchedule", trainScheduleService.getById(id));
         return "updateTrainSchedule";
     }
-    @PostMapping("/{userName}/updateTrainSchedule/{id}")
-    public String updateTrainSchedule(@PathVariable String userName, @PathVariable Long id, Model model, HttpServletRequest req) {
+    @PostMapping("/updateTrainSchedule/{id}")
+    public String updateTrainSchedule(Principal principal, @PathVariable Long id, Model model, HttpServletRequest req) {
         TrainSchedule trainSchedule = trainScheduleService.getById(id);
         // trainSchedule.getTrains();
         Date date = Date.valueOf(req.getParameter("date"));
@@ -65,7 +75,7 @@ public class TrainScheduleController {
         trainSchedule.setDepartingTime(departingTime);
         trainSchedule.setArrivalTime(arrivalTime);
         trainScheduleService.saveTrainSchedule(trainSchedule);
-        return "redirect:/" + userName + "/adminViewTrainSchedule/" + trainSchedule.getTrains().getTrainNumber();
+        return "redirect:/adminViewTrainSchedule/" + trainSchedule.getTrains().getTrainNumber();
 
     }
 

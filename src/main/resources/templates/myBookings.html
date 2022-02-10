@@ -19,7 +19,7 @@
 
             <div class="menu">
                 <ul class="navMenu">
-                    <li><a th:href="@{/{userName}/viewTrains (userName=${userName})}">View Trains</a></li>
+                    <li><a th:href="@{/viewTrains}">View Trains</a></li>
 
                     <li><a th:href="@{/viewProfile}">View Profile</a></li>
                     <li><a href="#">My bookings</a></li>
@@ -55,7 +55,7 @@
                 <td th:text="${name.price}"></td>
 
                 <td>
-                    <a class="btn" th:href="@{/{userName}/cancelBookings/{id} (userName=${userName},id=${name.id})}">Cancel</a>
+                    <a class="btn" th:href="@{/cancelBookings/{id} (id=${name.id})}">Cancel</a>
                 </td>
             </tr>
 

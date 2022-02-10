@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.util.Objects;
 
 @Controller
@@ -30,24 +31,36 @@ public class SeatsController {
     @Autowired
     private PassengersService passengersService;
 
-    @RequestMapping("/{userName}/seatMap/{id}")
-    public String bookMyTrain(@PathVariable String userName, @PathVariable Long id, Model model){
-        model.addAttribute("userName",userName);
+    @RequestMapping("/seatMap/{id}")
+    public String bookMyTrain(Principal principal, @PathVariable Long id, Model model){
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
+
         model.addAttribute("train",id);
         return "seatMap";
     }
 
     //seat booking
 
-    @RequestMapping("/{username}/bookedStatus/{id}")
-    public String seatBooking(@PathVariable String userName,@PathVariable Long id,Model model){
-        model.addAttribute("userName",userName);
+    @RequestMapping("/bookedStatus/{id}")
+    public String seatBooking(Principal principal, @PathVariable Long id,Model model){
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
+
         model.addAttribute("train",id);
         return "bookedStatus";
     }
 
-    @PostMapping("/{userName}/bookedStatus/{id}")
-    public String bookedSeats(@PathVariable String userName, @PathVariable Long id, HttpServletRequest request, Model model){
+    @PostMapping("/bookedStatus/{id}")
+    public String bookedSeats(Principal principal, @PathVariable Long id, HttpServletRequest request, Model model){
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
         model.addAttribute("train",id);
         String bookSeats=request.getParameter("bookedSeats");
         String[] bookedSeat=bookSeats.split(",");
@@ -55,7 +68,7 @@ public class SeatsController {
             BookedSeats bookedSeats=bookedSeatsService.getBySeatsAndTrainScheduleId(seat,id);
             if(!(Objects.isNull(bookedSeats))){
                 model.addAttribute("message1", " Seats are already booked...Please select another seats to continue booking !!!");
-                return "redirect:/"+userName+"/seatMap/"+id;
+                return "redirect:/seatMap/"+id;
             }
         }
         for(String seat:bookedSeat){
@@ -63,7 +76,7 @@ public class SeatsController {
             Seats seats=seatsService.getBySeats(seat);
             BookedSeats bookedSeats1=new BookedSeats(seats.getSeats(),seats.getPrice());
             bookedSeats1.setTrainSchedule(trainScheduleService.getById(id));
-            bookedSeats1.setPassenger(passengersService.findById(userName));
+            bookedSeats1.setPassenger(passengersService.findById(principal.getName()));
             bookedSeatsService.saveSeats(bookedSeats1);
             model.addAttribute("message","Seats booked successfully!!!");
 
@@ -77,19 +90,27 @@ public class SeatsController {
 
     //details of previous bookings
 
-    @RequestMapping("/{userName}/myBookings")
-    public String myBookings(@PathVariable String userName, Model model ){
-        model.addAttribute("userName",userName);
-        model.addAttribute("name",bookedSeatsService.getByPassengerUserName(userName));
+    @RequestMapping("/myBookings")
+    public String myBookings(Principal principal, Model model ){
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
+
+        model.addAttribute("name",bookedSeatsService.getByPassengerUserName(principal.getName()));
         return "myBookings";
     }
-    @RequestMapping("/{userName}/cancelBookings/{id}")
-    public String cancelBooking(@PathVariable String userName,@PathVariable Long id,Model model){
-        model.addAttribute("userName",userName);
+    @RequestMapping("/cancelBookings/{id}")
+    public String cancelBooking(Principal principal, @PathVariable Long id,Model model){
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
+
         model.addAttribute("id",id);
         if(bookedSeatsService.existById(id)){
             bookedSeatsService.deleteById(id);
         }
-        return "redirect:/"+userName+"/myBookings";
+        return "redirect:/myBookings";
     }
 }

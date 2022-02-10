@@ -19,9 +19,9 @@
 
             <div class="menu">
                 <ul class="navMenu">
-                    <li><a th:href="@{/{userName}/viewTrains (userName=${userName})}">View Trains</a></li>
+                    <li><a th:href="@{/viewTrains}">View Trains</a></li>
                     <li><a th:href="@{/viewProfile}">View Profile</a></li>
-                    <li><a th:href="@{/{userName}/myBookings (userName=${userName})}">My bookings</a></li>
+                    <li><a th:href="@{/myBookings}">My bookings</a></li>
                     <li><a href="/logout">Sign-Out</a></li>
                 </ul>
             </div>
@@ -307,7 +307,7 @@
             </div>
         </div>
 
-        <form th:action="@{/{userName}/bookedStatus/{id} (userName=${userName},id=${train})}" method="post" align="center" style="display:none">
+        <form th:action="@{/bookedStatus/{id} (id=${train})}" method="post" align="center" style="display:none">
             <input type="text" id="bookedSeats" name="bookedSeats" align="center" class="form-control"/>
             <button type="submit" id="submitBookedSeats" class="btn btn-success">Book</button>
 

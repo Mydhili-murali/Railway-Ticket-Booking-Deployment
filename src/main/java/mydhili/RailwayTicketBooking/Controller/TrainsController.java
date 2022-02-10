@@ -6,10 +6,10 @@ import mydhili.RailwayTicketBooking.Service.TrainsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.sql.Date;
 import java.sql.Time;
 
@@ -23,19 +23,22 @@ public class TrainsController {
     private TrainScheduleService trainScheduleService;
 
     //adding train details
-    @RequestMapping("/{userName}/addTrain")
-    public String addTrain(@PathVariable String userName, Model model) {
-        model.addAttribute("userName", userName);
-        return "addTrain";
-    }
-
     @RequestMapping("/addTrain")
-    public String addTrain() {
+    public String addTrain(Principal principal, Model model) {
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
         return "addTrain";
     }
 
-    @PostMapping("/{userName}/addTrainDetails")
-    public String addTrain(@PathVariable String userName, HttpServletRequest req, Model model) {
+
+    @PostMapping("/addTrainDetails")
+    public String addTrain(Principal principal, HttpServletRequest req, Model model) {
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
 
         String trainNum = req.getParameter("trainNumber");
         String trainName = req.getParameter("trainName");
@@ -44,21 +47,27 @@ public class TrainsController {
         Trains trains = new Trains(trainNum, trainName, routingFrom, routingTo);
         service.saveTrain(trains);
         model.addAttribute("message", "Successfully added !!!");
-        model.addAttribute("userName", userName);
         return "addTrainSchedule";
 
 
     }
 
-    @RequestMapping("/{userName}/addTrainSchedule")
-    public String addTrainSchedule(@PathVariable String userName, Model model) {
+    @RequestMapping("/addTrainSchedule")
+    public String addTrainSchedule(Principal principal, Model model) {
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
 
-        model.addAttribute("userName", userName);
         return "addTrainSchedule";
     }
 
-    @PostMapping("/{userName}/addTrainSchedule")
-    public String addTrainScheduleDetails(@PathVariable String userName, HttpServletRequest req, Model model) {
+    @PostMapping("/addTrainSchedule")
+    public String addTrainScheduleDetails(Principal principal, HttpServletRequest req, Model model) {
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
         String trainNumber = req.getParameter("trainNumber");
         Date date = Date.valueOf(req.getParameter("date"));
         Time departingTime = Time.valueOf(req.getParameter("departingTime") + ":00");
@@ -67,30 +76,32 @@ public class TrainsController {
         trainSchedule.setTrains(service.getByTrainNumber(trainNumber));
         trainScheduleService.saveTrainSchedule(trainSchedule);
         model.addAttribute("message", "Successfully added");
-        model.addAttribute("userName", userName);
         return "addTrainSchedule";
 
 
     }
 
-//    @RequestMapping("/trainsListPage")
-//    public String trainList(Model model) {
-//        model.addAttribute("trains", service.listAllTrains());
-//        return "trainsListPage";
-//    }
 
     //view for train details by passenger
-    @RequestMapping("/{userName}/viewTrains")
-    public String viewTrains(@PathVariable String userName, Model model) {
-        model.addAttribute("userName", userName);
+    @RequestMapping("/viewTrains")
+    public String viewTrains(Principal principal, Model model) {
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
+
         model.addAttribute("trains", service.listAllTrains());
         return "viewTrains";
     }
 
     //view for train details by admin
-    @RequestMapping("/{userName}/adminViewTrains")
-    public String adminViewTrains(@PathVariable String userName, Model model) {
-        model.addAttribute("userName", userName);
+    @RequestMapping("/adminViewTrains")
+    public String adminViewTrains(Principal principal, Model model) {
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
+
         model.addAttribute("trains", service.listAllTrains());
         return "adminViewTrains";
     }

@@ -25,9 +25,9 @@
 
             <div class="menu">
                 <ul class="navMenu">
-                    <li><a href="#">View Trains</a></li>
+                    <li><a href="#" class="active">View Trains</a></li>
                     <li><a th:href="@{/viewProfile}">View Profile</a></li>
-                    <li><a th:href="@{/{userName}/myBookings (userName=${userName})}">My bookings</a></li>
+                    <li><a th:href="@{/myBookings}">My bookings</a></li>
                     <li><a href="/logout">Sign-Out</a></li>
                 </ul>
             </div>
@@ -57,7 +57,7 @@
                     <td th:text="${train.routingTo}"></td>
 
                     <td>
-                        <a class="btn btn-success" th:href="@{/{userName}/trainSchedule/{id} (userName=${userName},id=${train.trainNumber})}">Continue</a>
+                        <a class="btn btn-success" th:href="@{/trainSchedule/{id} (id=${train.trainNumber})}">Continue</a>
                     </td>
                 </tr>
                 </tbody>

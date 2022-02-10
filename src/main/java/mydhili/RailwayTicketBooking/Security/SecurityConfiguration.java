@@ -13,23 +13,23 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-        @Autowired
-        private MyUserDetailsService userDetailsService;
-        @Override
-        protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-            auth.userDetailsService(userDetailsService);
-        }
+    @Autowired
+    private MyUserDetailsService userDetailsService;
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
+    }
 
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            http.csrf().disable()
-                    .authorizeRequests()
-                    .antMatchers("/addTrain").hasRole("ADMIN")
-                    .antMatchers("/viewProfile","/updateProfile/*").hasRole("USER")
-                    .antMatchers("/").permitAll()
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/addTrain","/viewUsersAccount","/deleteAccount/*","/adminViewTrainSchedule/*","/updateTrainSchedule/*","/addTrainDetails","/addTrainSchedule","/adminViewTrains").hasRole("ADMIN")
+                .antMatchers("/viewProfile","/updateProfile","/seatMap/*","/bookedStatus/*","/myBookings","/cancelBookings/*","/trainSchedule/*","/viewTrains").hasRole("USER")
+                .antMatchers("/").permitAll()
 //                .antMatchers("/*").hasRole("USER")
-                    .and().formLogin().loginPage("/login").defaultSuccessUrl("/success");
-            //       .authorizeRequests()
+                .and().formLogin().loginPage("/login").defaultSuccessUrl("/success");
+        //       .authorizeRequests()
 //                .antMatchers("/", "/home","/registration").permitAll()
 //                .anyRequest().authenticated()
 //                .and()
@@ -39,10 +39,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .and()
 //                .logout()
 //                .permitAll();
-        }
-        @Bean
-        public PasswordEncoder getPasswordEncoder(){
-            return NoOpPasswordEncoder.getInstance();
-        }
+    }
+    @Bean
+    public PasswordEncoder getPasswordEncoder(){
+        return NoOpPasswordEncoder.getInstance();
+    }
 
 }

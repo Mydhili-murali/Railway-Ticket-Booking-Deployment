@@ -19,10 +19,10 @@
 
             <div class="menu">
                 <ul class="navMenu">
-                    <li><a th:href="@{/{userName}/viewTrains (userName=${userName})}">View Trains</a></li>
-                    <li><a th:href="@{/viewProfile}">View Profile</a></li>
+                    <li><a th:href="@{/viewTrains}">View Trains</a></li>
+                    <li><a th:href="@{/viewProfile}" class="active">View Profile</a></li>
 
-                    <li><a th:href="@{/{userName}/myBookings (userName=${userName})}">My bookings</a></li>
+                    <li><a th:href="@{/myBookings}">My bookings</a></li>
                     <li><a href="/logout">Sign-Out</a></li>
                 </ul>
             </div>
@@ -52,7 +52,7 @@
                                 <h3 class="text-white-50 gap-3 text-md-start"> Phone Number: &nbsp;<span th:text="${phoneNumber}"/> </h3>
                             </div>
                             <div class="form-group justify-content">
-                                <a th:href="@{/updateProfile/{id} (id=${userName})}" class="btn">Update details</a>
+                                <a th:href="@{/updateProfile}" class="btn">Update details</a>
                             </div>
 
                         </div>

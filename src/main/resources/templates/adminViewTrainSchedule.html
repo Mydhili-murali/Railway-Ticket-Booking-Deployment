@@ -21,12 +21,12 @@
 
             <div class="menu">
                 <ul class="navMenu">
-                    <li><a th:href="@{/{userName}/addTrain (userName=${userName})}">Add Trains</a></li>
-                    <li><a th:href="@{/{userName}/addTrainSchedule (userName=${userName})}">Add Train Schedule</a></li>
+                    <li><a th:href="@{/addTrain}">Add Trains</a></li>
+                    <li><a th:href="@{/addTrainSchedule}">Add Train Schedule</a></li>
 
 
-                    <li><a th:href="@{/{userName}/adminViewTrains (userName=${userName})}"  class="active">View Trains</a></li>
-                    <li><a th:href="@{/{userName}/viewUsersAccount (userName=${userName})}">Manage Accounts</a></li>
+                    <li><a th:href="@{/adminViewTrains}"  class="active">View Trains</a></li>
+                    <li><a th:href="@{/viewUsersAccount}">Manage Accounts</a></li>
 
                     <li><a href="/logout">Sign-Out</a></li>
                 </ul>
@@ -59,7 +59,7 @@
                         <td th:text="${schedule.departingTime}"></td>
                         <td th:text="${schedule.arrivalTime}"></td>
                         <td>
-                            <a class="btn" th:href="@{/{userName}/updateTrainSchedule/{id} (userName=${userName},id=${schedule.id})}">Update</a>
+                            <a class="btn" th:href="@{/updateTrainSchedule/{id} (id=${schedule.id})}">Update</a>
                         </td>
                     </tr>
                     </tbody>

@@ -21,11 +21,11 @@
                 <ul class="navMenu">
 
 
-                    <li><a th:href="@{/{userName}/addTrain (userName=${userName})}">Add Trains</a></li>
-                    <li><a th:href="@{/{userName}/addTrainSchedule (userName=${userName})}">Add Train Schedule</a></li>
+                    <li><a th:href="@{/addTrain}">Add Trains</a></li>
+                    <li><a th:href="@{/addTrainSchedule}">Add Train Schedule</a></li>
 
-                    <li><a th:href="@{/{userName}/adminViewTrains (userName=${userName})}">View Trains</a></li>
-                    <li><a th:href="@{/{userName}/viewUsersAccount (userName=${userName})}">Manage Accounts</a></li>
+                    <li><a th:href="@{/adminViewTrains}" class="active">View Trains</a></li>
+                    <li><a th:href="@{/viewUsersAccount}">Manage Accounts</a></li>
 
                     <li><a href="/logout">Sign-Out</a></li>
                 </ul>
@@ -35,7 +35,7 @@
         <div class="content">
 
             <h1 id="main-title">Add Train Schedule</h1>
-            <form  th:action="@{/{userName}/updateTrainSchedule/{id} (userName=${userName},id=${trainSchedule.id})}" method="POST">
+            <form  th:action="@{/updateTrainSchedule/{id} (id=${trainSchedule.id})}" method="POST">
                 <h3 align="center"><span th:text=" ${message}"/></h3>
                 <table  cellpadding="2" align="center" >
 

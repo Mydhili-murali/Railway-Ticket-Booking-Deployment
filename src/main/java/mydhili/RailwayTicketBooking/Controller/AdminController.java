@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
 
 @Transactional
 @Controller
@@ -23,22 +24,30 @@ public class AdminController {
     private BookedSeatsService bookedSeatsService;
 
     //viewing registered user accounts
-    @RequestMapping("/{userName}/viewUsersAccount")
-    public String viewUsersAccount(@PathVariable String userName, Model model){
-        model.addAttribute("userName",userName);
+    @RequestMapping("/viewUsersAccount")
+    public String viewUsersAccount(Principal principal, Model model){
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
+
         model.addAttribute("passengers",passengersService.listAllPassengers());
         return "viewAccounts";
     }
 
     //deleting user account
-    @RequestMapping("/{userName}/deleteAccount/{id}")
-    public String deleteAccount(@PathVariable String userName,@PathVariable String id,Model model){
-        model.addAttribute("userName",userName);
+    @RequestMapping("/deleteAccount/{id}")
+    public String deleteAccount(Principal principal,@PathVariable String id,Model model){
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
+
         if(bookedSeatsService.existsByPassengersUserName(id)){
             bookedSeatsService.deleteByPassengerId(id);
         }
         passengersService.deletePassengerById(id);
 
-        return "redirect:/"+userName+"/viewUsersAccount";
+        return "redirect:/viewUsersAccount";
     }
 }

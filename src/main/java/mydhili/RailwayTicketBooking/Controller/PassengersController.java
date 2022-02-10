@@ -1,6 +1,4 @@
 package mydhili.RailwayTicketBooking.Controller;
-
-import mydhili.RailwayTicketBooking.Entity.Admin;
 import mydhili.RailwayTicketBooking.Entity.Passengers;
 import mydhili.RailwayTicketBooking.Service.AdminService;
 import mydhili.RailwayTicketBooking.Service.PassengersService;
@@ -9,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -64,57 +61,20 @@ public class PassengersController {
     public String login(Principal principal){
         String userName = principal.getName();
         if (userName.equals("admin")){
-           // return "redirect:/addTrain";
-            return "redirect:/"+userName+"/addTrain";
+            return "redirect:/addTrain";
+            //return "redirect:/"+userName+"/addTrain";
         }
-        //return "redirect:/viewTrains";
-       return "redirect:/"+userName+"/viewTrains";
+        return "redirect:/viewTrains";
+        //return "redirect:/"+userName+"/viewTrains";
     }
 
-//    @PostMapping("/login")
-//    public String login(HttpServletRequest req, Model model) {
-//        Passengers passenger;
-//        Admin admin;
-//        String userName = req.getParameter("userName");
-//        String password = req.getParameter("password");
-//        if (adminService.existsById(userName)) {
-//            admin = adminService.findById(userName);
-//            if (password.equals(admin.getPassword())) {
-//                model.addAttribute("userName", userName);
-//                return "addTrain";
-//            } else {
-//                model.addAttribute("message", "Invalid credentials!!!!!!!");
-//                return "login";
-//            }
-//
-//        } else if (service.existsById(userName)) {
-//
-//            passenger = service.findById(userName);
-//            if (password.equals(passenger.getPassword())) {
-//
-//                model.addAttribute("message", "Successfully logged in!!!!!!!");
-//                model.addAttribute("userName", userName);
-//                model.addAttribute("trains", trainsService.listAllTrains());
-//                return "trainsListPage";
-//
-//            } else {
-//                model.addAttribute("message", "Invalid credentials!!!!!!!");
-//                return "login";
-//            }
-//        } else {
-//            model.addAttribute("message", "Invalid credentials!!!!!!!");
-//            return "login";
-//        }
-//
-//
-//    }
 
     //view for passenger profile details
     @RequestMapping("/viewProfile")
     public String viewProfile(Model model,Principal principal) {
         if (principal != null) {
             String username = principal.getName();
-            model.addAttribute("username", username);
+            model.addAttribute("userName", username);
         }
         Passengers passenger = service.findById(principal.getName());
 
@@ -128,15 +88,23 @@ public class PassengersController {
     }
 
     //updating passenger profile details
-    @RequestMapping("/updateProfile/{id}")
-    public String updateProfile(@PathVariable String id, Model model) {
-        model.addAttribute("passenger", service.findById(id));
+    @RequestMapping("/updateProfile")
+    public String updateProfile(Principal principal,Model model) {
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
+        model.addAttribute("passenger", service.findById(principal.getName()));
         return "updateProfile";
     }
 
-    @PostMapping("/{userName}/updateProfile")
-    public String updateProfile(@PathVariable String userName, HttpServletRequest req, Model model) {
-        Passengers passenger = service.findById(userName);
+    @PostMapping("/updateProfile")
+    public String updateProfile(Principal principal, HttpServletRequest req, Model model) {
+        if (principal != null) {
+            String username = principal.getName();
+            model.addAttribute("userName", username);
+        }
+        Passengers passenger = service.findById(principal.getName());
         String name=req.getParameter("name");
         String address=req.getParameter("address");
         String email=req.getParameter("emailId");
@@ -149,7 +117,7 @@ public class PassengersController {
         passenger.setPassword(password);
         passenger.setPhoneNumber(phoneNumber);
         service.savePassenger(passenger);
-        return "redirect:/"+userName+"/viewProfile";
+        return "redirect:/viewProfile";
     }
 
 

@@ -25,10 +25,10 @@
 
       <div class="menu">
         <ul class="navMenu">
-          <li><a th:href="@{/{userName}/addTrain (userName=${userName})}">Add Trains</a></li>
-          <li><a  th:href="@{/{userName}/addTrainSchedule (userName=${userName})}" >Add Train Schedule</a></li>
-          <li><a th:href="@{/{userName}/adminViewTrains (userName=${userName})}">View Trains</a></li>
-          <li><a th:href="@{/{userName}/viewUsersAccount (userName=${userName})}">Manage Accounts</a></li>
+          <li><a th:href="@{/addTrain}">Add Trains</a></li>
+          <li><a  th:href="@{/addTrainSchedule}" >Add Train Schedule</a></li>
+          <li><a th:href="@{/adminViewTrains}">View Trains</a></li>
+          <li><a th:href="@{/viewUsersAccount}" class="active">Manage Accounts</a></li>
 
           <li><a href="/logout">Sign-Out</a></li>
         </ul>
@@ -48,7 +48,7 @@
           <th scope="col">Username</th>
           <th scope="col">Email Id</th>
           <th scope="col">Phone Number</th>
-          <!--                    <th scope="col">Role</th>-->
+          <th scope="col">Role</th>
           <th scope="col">Action</th>
         </tr>
         </thead>
@@ -60,10 +60,10 @@
           <td th:text="${passenger.userName}"></td>
           <td th:text="${passenger.email}"></td>
           <td th:text="${passenger.phoneNumber}"></td>
-          <!--                    <td th:text="${passenger.roles}"></td>-->
+          <td th:text="${passenger.roles}"></td>
 
           <td>
-            <a class="btn btn-success" th:href="@{/{userName}/deleteAccount/{id} (userName=${userName},id=${passenger.userName})}">Delete</a>
+            <a class="btn btn-success" th:href="@{/deleteAccount/{id} (id=${passenger.userName})}">Delete</a>
           </td>
         </tr>
         </tbody>

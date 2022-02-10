@@ -43,7 +43,14 @@ public class PassengersController {
         String userName = req.getParameter("userName");
         String password = req.getParameter("password");
         Long phoneNumber = Long.parseLong(req.getParameter("phNo"));
-        Passengers passenger = new Passengers(name, userName, password, address, emailId, phoneNumber,"ROLE_USER");
+        Passengers passenger;
+        if(userName.equals("admin")){
+            passenger = new Passengers(name, userName, password, address, emailId, phoneNumber,"ROLE_ADMIN");
+        }
+        else{
+             passenger = new Passengers(name, userName, password, address, emailId, phoneNumber,"ROLE_USER");
+
+        }
         service.savePassenger(passenger);
         model.addAttribute("message", "Successfully registered!!!!!!");
         return "login";

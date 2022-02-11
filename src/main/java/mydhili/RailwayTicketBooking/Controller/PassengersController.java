@@ -1,6 +1,5 @@
 package mydhili.RailwayTicketBooking.Controller;
 import mydhili.RailwayTicketBooking.Entity.Passengers;
-import mydhili.RailwayTicketBooking.Service.AdminService;
 import mydhili.RailwayTicketBooking.Service.PassengersService;
 import mydhili.RailwayTicketBooking.Service.TrainsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +17,7 @@ public class PassengersController {
     @Autowired
     private PassengersService service;
 
-    @Autowired
-    private AdminService adminService;
+
 
     @Autowired
     private TrainsService trainsService;

@@ -18,9 +18,10 @@ body {
     /* border: 2px red solid; */
     border-radius: 5px;
     width: 400px;
-    height: 490px;
+    height: 531px;
     box-shadow: 2px 3px 10px rgb(184, 184, 184);
     align:center;
+    margin-top:200px;
 }
 
 /* Sign Up */

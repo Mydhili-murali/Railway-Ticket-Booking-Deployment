@@ -1,5 +1,6 @@
 package mydhili.RailwayTicketBooking.Controller;
 import mydhili.RailwayTicketBooking.Entity.Passengers;
+
 import mydhili.RailwayTicketBooking.Service.PassengersService;
 import mydhili.RailwayTicketBooking.Service.TrainsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,10 +47,17 @@ public class PassengersController {
             passenger = new Passengers(name, userName, password, address, emailId, phoneNumber,"ROLE_ADMIN");
         }
         else{
-             passenger = new Passengers(name, userName, password, address, emailId, phoneNumber,"ROLE_USER");
+            passenger = new Passengers(name, userName, password, address, emailId, phoneNumber,"ROLE_USER");
 
         }
-        service.savePassenger(passenger);
+        if(!service.existsById(userName)){
+            service.savePassenger(passenger);
+        }
+        else
+        {
+            model.addAttribute("error","This username is already taken... Please choose another one !!!");
+            return "register";
+        }
         model.addAttribute("message", "Successfully registered!!!!!!");
         return "login";
 
@@ -72,6 +80,7 @@ public class PassengersController {
         return "redirect:/viewTrains";
         //return "redirect:/"+userName+"/viewTrains";
     }
+
 
 
     //view for passenger profile details

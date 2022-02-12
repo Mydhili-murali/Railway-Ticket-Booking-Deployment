@@ -68,7 +68,7 @@ public class SeatsController {
             BookedSeats bookedSeats=bookedSeatsService.getBySeatsAndTrainScheduleId(seat,id);
             if(!(Objects.isNull(bookedSeats))){
                 model.addAttribute("message1", " Seats are already booked...Please select another seats to continue booking !!!");
-                return "redirect:/seatMap/"+id;
+                return "seatMap";
             }
         }
         for(String seat:bookedSeat){
@@ -78,7 +78,7 @@ public class SeatsController {
             bookedSeats1.setTrainSchedule(trainScheduleService.getById(id));
             bookedSeats1.setPassenger(passengersService.findById(principal.getName()));
             bookedSeatsService.saveSeats(bookedSeats1);
-            model.addAttribute("message","Seats booked successfully!!!");
+            model.addAttribute("message","Seats booked successfully... You can see your bookings here...");
 
         }
 
@@ -96,9 +96,16 @@ public class SeatsController {
             String username = principal.getName();
             model.addAttribute("userName", username);
         }
-
-        model.addAttribute("name",bookedSeatsService.getByPassengerUserName(principal.getName()));
+        if((bookedSeatsService.getByPassengerUserName(principal.getName()).isEmpty())){
+            model.addAttribute("message1","There is no more previous bookings...please book your train..");
+            return "redirect:/viewTrains";
+        }
+        else{
+            model.addAttribute("name",bookedSeatsService.getByPassengerUserName(principal.getName()));
+        }
         return "myBookings";
+
+
     }
     @RequestMapping("/cancelBookings/{id}")
     public String cancelBooking(Principal principal, @PathVariable Long id,Model model){

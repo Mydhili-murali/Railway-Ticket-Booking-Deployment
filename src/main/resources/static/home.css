@@ -36,7 +36,7 @@
   align-items: center;
   padding: 0 50px;
 }
-.logo {
+/*.logo {
   font-family: "Abel", sans-serif;
   font-size: 45px;
       font-weight:600;
@@ -45,6 +45,7 @@
   color: white;
   margin: 4%;
 }
+*/
 .menu {
   display: inline-block;
   line-height: 80px;
@@ -129,5 +130,23 @@ color:white;
 .h1, h1 {
     font-size: calc(1.375rem + 1.5vw);
     margin-left: 700px;
+    color:white;
+}
+/*.navimg {
+  margin: 4%;
+  width: 100%;
+  height: 45px;
+
+}
+*/
+.h3, h3 {
+    font-size: calc(1.3rem + .6vw);
+    font-family: 'Circular-Loom';
+    color: white;
+}
+.h4, h4 {
+
+    font-size: medium;
+    font-family: 'Circular-Loom';
     color:white;
 }

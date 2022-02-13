@@ -4,13 +4,13 @@
 
 html {
   font-family: "Open Sans", sans-serif;
-  font-size: 16px;
+
 }
 
 .train {
-    margin: 20px auto;
+    margin: 10px 1px;
     max-width: 40%;
-    margin-top: 250px;
+    margin-top: 145px;
     width: 20%;
 }
 
@@ -20,24 +20,24 @@ html {
   padding: 0.5rem 0;
 }
 .exit div {
-  flex: 1;
-  background: #d8d8d8;
-  text-align: center;
-  justify-content: center;
-  height: 40px;
-  line-height: 40px;
+    flex: 1;
+    background: #6c3631;
+    text-align: center;
+    justify-content: center;
+    height: 40px;
+    line-height: 40px;
 }
 .exit div:nth-child(2) {
-  flex: 0 1 20%;
-  background: #fff;
+    flex: 0 1 20%;
+    background: transparent;
 }
 .exit.back {
   flex-direction: row-reverse;
 }
 
 .train-body {
-  border-right: 5px solid #d8d8d8;
-  border-left: 5px solid #d8d8d8;
+    border-right: 23px solid #6c3631;
+    border-left: 23px solid #6c3631;
 }
 
 ol {
@@ -97,11 +97,12 @@ ol {
   position: relative;
   width: 100%;
   text-align: center;
-  font-size: 14px;
-  font-weight: bold;
+  font-size: 18px;
+  font-weight: 800;
+  color: #060303;
   line-height: 1.5rem;
   padding: 4px 0;
-  background: #F42536;
+  background: #a37214;
   border-radius: 5px;
   -webkit-animation-duration: 300ms;
           animation-duration: 300ms;
@@ -116,7 +117,7 @@ ol {
   top: 1px;
   left: 50%;
   transform: translate(-50%, 0%);
-  background: rgba(255, 255, 255, 0.4);
+  background: rgb(241 203 156 / 58%);
   border-radius: 3px;
 }
 .seat label:hover {
@@ -178,12 +179,7 @@ ol {
   width: auto;
   height: 100%;
 
-  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./image/trainBg.jpg");
-  background-position: center;
 
-  background-size: cover;
-  background-repeat: no-repeat;
-  backdrop-filter: opacity(80%);
 }
 .Container {
   width: 100%;
@@ -278,9 +274,15 @@ body {
 
     font-family: var(--bs-body-font-family);
     font-size: var(--bs-body-font-size);
-    font-weight: var(--bs-body-font-weight);
+    font-weight:600;
     line-height: inherit;
     color: floralwhite;
+     background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./image/trainBg.jpg");
+      background-position: center;
+ background-attachment:fixed;
+      background-size: cover;
+      background-repeat: no-repeat;
+      backdrop-filter: opacity(100%);
 
     }
     .btn {

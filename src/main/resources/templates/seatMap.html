@@ -349,6 +349,14 @@ function price()
     document.getElementById("bookSeat").addEventListener("click",bookSeats)
 
 </script>
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    var theList = [[${seats}]]
+    for (i = 0; i < theList.length; i++) {
+        document.getElementById(theList[i]).disabled=true;
+    }
+    /*]]>*/
+</script>
 </body>
 </html>
 

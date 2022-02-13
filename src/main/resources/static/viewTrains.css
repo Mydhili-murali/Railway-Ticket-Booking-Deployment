@@ -4,7 +4,10 @@
   box-sizing: border-box;
   font-family: "Abel", sans-serif;
   font-size: 15px;
-  scroll-behavior: smooth;
+
+}
+body, html{
+height:100%;
 }
 body{
 background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./image/trainBg.jpg");
@@ -12,14 +15,17 @@ background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(
   background-size: cover;
   background-repeat: no-repeat;
   backdrop-filter: opacity(100%);
-   background-attachment:fixed;
+  background-attachment:fixed;
+  scroll-behavior:smooth;
+  box-sizing: border-box;
+
   }
 .wrapper {
   width: auto;
   height: 100vh;
 
 
-
+  scroll-behavior: smooth;
 }
 .Container {
   width: 100%;
@@ -81,14 +87,7 @@ background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(
 .menu ul li a:hover {
   border-color: white;
 }
-.menu ul li:nth-child(5) a {
-  color: #fff200;
-  border: 1px solid #fff200;
-}
-.menu ul li:nth-child(5) a:hover {
-  color: black;
-  background-color: #fff200;
-}
+
 .header {
   text-align: center;
 }
@@ -153,4 +152,136 @@ color:white;
     font-size: medium;
     font-family: 'Circular-Loom';
     color:white;
+}
+
+
+  .card {
+      border: none;
+      position: absolute;
+      left: 15%;
+      top:30%;
+      overflow: hidden;
+      border-radius: 2.3rem;
+      cursor: pointer;
+      background: rgba(28, 26, 26, 0.64);
+      width: 68%;
+  }
+
+.table-dark {
+    --bs-table-bg: #5f41009e;
+    --bs-table-striped-bg: #46310800;
+    --bs-table-striped-color: rgb(228 228 227);
+    --bs-table-active-bg: #363120;
+    --bs-table-active-color: #fff;
+    --bs-table-hover-bg: #323539;
+    --bs-table-hover-color: #fff;
+    color: #fff;
+    border-color: #373b3e;
+}
+
+.card:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: rgba(28, 26, 26, 0.97);
+  transform: scaleY(1);
+  transition: all 0.5s;
+  transform-origin: bottom
+}
+
+.card:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: rgba(46, 148, 46, 0.97);
+  transform: scaleY(0);
+  transition: all 0.5s;
+  transform-origin: bottom
+}
+
+.card:hover::after {
+  transform: scaleY(1)
+}
+
+.fonts {
+  font-size: 1rem;
+}
+
+
+
+.buttons button:nth-child(1) {
+  border: 1px solid #8E24AA !important;
+  color: rgba(46, 148, 46, 0.97);
+}
+
+/*
+flip card
+*/
+
+.card-flip > div {
+  backface-visibility: hidden;
+  transition: transform 300ms;
+  transition-timing-function: linear;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+}
+
+.card-front {
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+}
+
+.card-flip:hover .card-front {
+  transform: rotateY(-180deg);
+}
+
+.card-flip:hover .card-back {
+  transform: rotateY(0deg);
+}
+.text-white-50 {
+    --bs-text-opacity: 1;
+    color: white;
+}
+.btn {
+
+    margin-top: 15px;
+    background-color:#FEBE10;
+}
+.row>* {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    margin-top: var(--bs-gutter-y);
+    font-family: cursive;
+}
+
+tbody, td, tfoot, th, thead, tr {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    font-size: 18px;
+}
+.welcome{
+font-size:26px;
+ font-family: cursive;
+}
+h3 .s{
+ font-size: calc(1.3rem + .6vw);
+    font-family: cursive;
+    color: white;
 }

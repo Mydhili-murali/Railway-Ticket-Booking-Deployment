@@ -17,4 +17,5 @@ public interface BookedSeatsRepository extends JpaRepository<BookedSeats,Long> {
     public  void deleteByPassengerUserName(String id);
 
 
+   public List<BookedSeats> getByTrainScheduleId(Long id);
 }

@@ -4,19 +4,22 @@
   box-sizing: border-box;
   font-family: "Abel", sans-serif;
   font-size: 15px;
-  scroll-behavior: smooth;
   color:white;
 }
+body{
+background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./image/trainBg.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  backdrop-filter: opacity(100%);
+   background-attachment:fixed;
+  }
 .wrapper {
   width: auto;
   height: 100vh;
 
-  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./image/trainBg.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  backdrop-filter: opacity(80%);
-  scroll-behavior: smooth;
+
+
 }
 .Container {
   width: 100%;
@@ -115,12 +118,17 @@ font-size: 4rem;
 color:white;
 }
 .h1, h1 {
-    font-size: larger;
+    font-size: 26px;
+
+}
+h3{
+font-size: 20px;
+}
+h3 .s{
+    font-size: 20px;
+        font-family: monospace;
 }
 
-.h3, h3 {
-    font-size: medium;
-}
 
 .card {
   border: none;
@@ -211,4 +219,12 @@ flip card
 
     margin-top: 15px;
     background-color:#FEBE10;
+}
+.welcome{
+font-size:26px;
+ font-family: cursive;
+}
+.mb-4 {
+    margin-bottom: 1.5rem!important;
+    font-family: cursive;
 }

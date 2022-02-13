@@ -40,4 +40,8 @@ public class BookedSeatsService {
     public void deleteById(Long id) {
         repo.deleteById(id);
     }
+
+    public List<BookedSeats> getByTrainScheduleId(Long id) {
+        return repo.getByTrainScheduleId(id);
+    }
 }

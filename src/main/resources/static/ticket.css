@@ -4,7 +4,8 @@
   box-sizing: border-box;
   font-family: "Abel", sans-serif;
   font-size: 15px;
-  scroll-behavior: smooth;
+
+  color:white;
 }
 body{
 background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./image/trainBg.jpg");
@@ -19,7 +20,7 @@ background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(
   height: 100vh;
 
 
-
+  scroll-behavior: smooth;
 }
 .Container {
   width: 100%;
@@ -40,16 +41,7 @@ background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(
   align-items: center;
   padding: 0 50px;
 }
-/*.logo {
-  font-family: "Abel", sans-serif;
-  font-size: 45px;
-      font-weight:600;
-      padding-left: 20px;
-  letter-spacing: 0.7rem;
-  color: white;
-  margin: 4%;
-}
-*/
+
 .menu {
   display: inline-block;
   line-height: 80px;
@@ -126,31 +118,114 @@ font-size: 4rem;
   letter-spacing: 0.2rem;
 color:white;
 }
-.btn {
-
-
-    background-color:#FEBE10;
-}
 .h1, h1 {
-    font-size: calc(1.375rem + 1.5vw);
-    margin-left: 700px;
-    color:white;
-}
-/*.navimg {
-  margin: 4%;
-  width: 100%;
-  height: 45px;
+    font-size: 26px;
 
 }
+h3{
+font-size: 20px;
+}
+h3 .s{
+    font-size: 20px;
+        font-family: monospace;
+}
+
+
+.card {
+  border: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  cursor: pointer;
+  background: rgba(28, 26, 26, 0.64);
+}
+
+.card:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: rgba(28, 26, 26, 0.97);
+  transform: scaleY(1);
+  transition: all 0.5s;
+  transform-origin: bottom
+}
+
+.card:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100%;
+  background-color: rgba(46, 148, 46, 0.97);
+  transform: scaleY(0);
+  transition: all 0.5s;
+  transform-origin: bottom
+}
+
+.card:hover::after {
+  transform: scaleY(1)
+}
+
+.fonts {
+  font-size: 1rem;
+}
+
+
+
+.buttons button:nth-child(1) {
+  border: 1px solid #8E24AA !important;
+  color: rgba(46, 148, 46, 0.97);
+}
+
+/*
+flip card
 */
-.h3, h3 {
-    font-size: calc(1.3rem + .6vw);
-    font-family: 'Circular-Loom';
+
+.card-flip > div {
+  backface-visibility: hidden;
+  transition: transform 300ms;
+  transition-timing-function: linear;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  display: flex;
+}
+
+.card-front {
+  transform: rotateY(0deg);
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+}
+
+.card-flip:hover .card-front {
+  transform: rotateY(-180deg);
+}
+
+.card-flip:hover .card-back {
+  transform: rotateY(0deg);
+}
+.text-white-50 {
+    --bs-text-opacity: 1;
     color: white;
 }
-.h4, h4 {
+.btn {
 
-    font-size: medium;
-    font-family: 'Circular-Loom';
-    color:white;
+    margin-top: 15px;
+    background-color:#FEBE10;
+}
+.welcome{
+font-size:26px;
+ font-family: cursive;
+}
+.mb-4 {
+    margin-bottom: 1.5rem!important;
+    font-family: cursive;
 }

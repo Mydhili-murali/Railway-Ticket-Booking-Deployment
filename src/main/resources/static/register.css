@@ -9,12 +9,18 @@
 body {
     background-color: black;
 
+background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./image/trainBg.jpg");
    font-family:sans-serif;
+    background-position: center;
+     background-size: cover;
+     background-repeat: no-repeat;
+     backdrop-filter: opacity(100%);
+      background-attachment:fixed;
 }
 
 .content {
     margin: 70px auto;
-    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+        background-image: linear-gradient(120deg, #b7862e 0%, #edb753 100%);
     /* border: 2px red solid; */
     border-radius: 5px;
     width: 400px;
@@ -22,23 +28,27 @@ body {
     box-shadow: 2px 3px 10px rgb(184, 184, 184);
     align:center;
     margin-top:200px;
+    border-radius:2.3rem;
 }
 
 /* Sign Up */
 #main-title {
     /* border: 2px red solid; */
     text-align: center;
-    font-size: 25px;
+    font-size: 28px;
     padding: 30px 30px 10px 30px;
     font-weight: 700;
     color: rgb(20, 20, 20);
+    font-family: cursive;
 }
 
 /* It only takes a minute! */
 #subtitle {
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
+        font-weight: 600;
     color: rgb(70, 70, 70);
+        font-family: cursive;
 }
 
 form {
@@ -50,11 +60,6 @@ form {
   width: auto;
   height: 100vh;
 
-  background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("./image/trainBg.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  backdrop-filter: opacity(80%);
 }
 .Container {
   width: 100%;
@@ -75,15 +80,7 @@ form {
   align-items: center;
   padding: 0 50px;
 }
-.logo {
-  font-family: "Abel", sans-serif;
-  font-size: 45px;
-      font-weight:600;
-      padding-left: 20px;
-  letter-spacing: 0.7rem;
-  color: white;
-  margin: 4%;
-}
+
 .menu {
   display: inline-block;
   line-height: 80px;
@@ -115,14 +112,7 @@ form {
 .menu ul li a:hover {
   border-color: white;
 }
-.menu ul li:nth-child(5) a {
-  color: #fff200;
-  border: 1px solid #fff200;
-}
-.menu ul li:nth-child(5) a:hover {
-  color: black;
-  background-color: #fff200;
-}
+
 .header {
   text-align: center;
 }
@@ -177,4 +167,10 @@ button {
 
     margin-top: 15px;
     background-color:#FEBE10;
+}
+tbody, td, tfoot, th, thead, tr {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+    font-family: cursive;
 }

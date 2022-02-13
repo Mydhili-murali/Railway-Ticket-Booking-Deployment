@@ -28,15 +28,17 @@
             </div>
         </div>
         <div class="login-container">
+           <marquee direction="left"> <h3 align="center"><span th:text=" ${message}"/></h3></marquee>
+            <div th:if="${param.error}">
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}">
+                You have been logged out.
+            </div>
             <!--            <img src="assets/avatar.jpg" alt="avatar image">-->
             <form action="/login" method="POST">
-                <div th:if="${param.error}">
-                    Invalid username and password.
-                </div>
-                <div th:if="${param.logout}">
-                    You have been logged out.
-                </div>
-                <h1>LOGIN</h1>
+
+                <h1>Sign In</h1>
                 <div>
                     <label>Username</label>
                     <input type="text" name="username" placeholder="Enter your username here" value="" required="true">
@@ -45,7 +47,7 @@
                     <label>Password</label>
                     <input type="password" name="password" placeholder="Enter your password here" value="" required="true">
                 </div>
-                <input type="submit" name="login" value="Sign-In">
+                <input type="submit" name="login" value="Sign-In"/>
             </form>
         </div>
 

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -37,7 +39,14 @@ public class SeatsController {
             String username = principal.getName();
             model.addAttribute("userName", username);
         }
-
+        int i=0;
+        String[] allSeats=new String[52];
+        List<BookedSeats> bookedSeats=bookedSeatsService.getByTrainScheduleId(id);
+        for(BookedSeats seat:bookedSeats){
+            allSeats[i]=seat.getSeats();
+            i++;
+        }
+        model.addAttribute("seats",allSeats);
         model.addAttribute("train",id);
         return "seatMap";
     }
@@ -78,6 +87,16 @@ public class SeatsController {
             bookedSeats1.setTrainSchedule(trainScheduleService.getById(id));
             bookedSeats1.setPassenger(passengersService.findById(principal.getName()));
             bookedSeatsService.saveSeats(bookedSeats1);
+            model.addAttribute("name",bookedSeats1.getPassenger().getPassengerName());
+            model.addAttribute("trainNumber",bookedSeats1.getTrainSchedule().getTrains().getTrainNumber());
+            model.addAttribute("trainName",bookedSeats1.getTrainSchedule().getTrains().getTrainName());
+            model.addAttribute("routingFrom",bookedSeats1.getTrainSchedule().getTrains().getRoutingFrom());
+            model.addAttribute("routingTo",bookedSeats1.getTrainSchedule().getTrains().getRoutingTo());
+            model.addAttribute("date",bookedSeats1.getTrainSchedule().getDate());
+            model.addAttribute("departingTime",bookedSeats1.getTrainSchedule().getDepartingTime());
+            model.addAttribute("arrivalTime",bookedSeats1.getTrainSchedule().getArrivalTime());
+            model.addAttribute("seats",bookedSeat);
+            model.addAttribute("price", Arrays.stream(bookedSeat).count()*200);
             model.addAttribute("message","Seats booked successfully... You can see your bookings here...");
 
         }
@@ -85,7 +104,7 @@ public class SeatsController {
 
 
 
-        return "bookedStatus";
+        return "ticket";
     }
 
     //details of previous bookings

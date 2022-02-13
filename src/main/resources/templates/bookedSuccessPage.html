@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="container mt-5">
+        <div class="container mt-5" onclick="myFunction()">
             <div class="row d-flex justify-content-center">
                 <div class="col-md-7">
                     <div class="card p-3 py-4">
@@ -67,7 +67,9 @@
                             <div class="px-4 mt-1">
                                 <h3 class="text-white-50 gap-3 text-md-start"> Price: &nbsp;<span class="s" th:text="${price}"/> </h3>
                             </div>
-
+                            <div class="form-group justify-content">
+<!--                                <a class="btn" onclick="myFunction()">Pay</a>-->
+                            </div>
 
                         </div>
                     </div>
@@ -77,5 +79,10 @@
 
     </div>
 </div>
+<script>
+function myFunction() {
+  alert("The payment is Successful !!!");
+}
+</script>
 </body>
 </html>

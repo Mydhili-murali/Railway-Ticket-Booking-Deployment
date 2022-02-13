@@ -104,7 +104,7 @@ public class SeatsController {
 
 
 
-        return "ticket";
+        return "bookedSuccessPage";
     }
 
     //details of previous bookings

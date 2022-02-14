@@ -53,7 +53,7 @@ public class SeatsController {
 
     //seat booking
 
-    @RequestMapping("/bookedStatus/{id}")
+    @RequestMapping("/bookedSuccessPage/{id}")
     public String seatBooking(Principal principal, @PathVariable Long id,Model model){
         if (principal != null) {
             String username = principal.getName();
@@ -61,7 +61,7 @@ public class SeatsController {
         }
 
         model.addAttribute("train",id);
-        return "bookedStatus";
+        return "bookedSuccessPage";
     }
 
     @PostMapping("/bookedStatus/{id}")

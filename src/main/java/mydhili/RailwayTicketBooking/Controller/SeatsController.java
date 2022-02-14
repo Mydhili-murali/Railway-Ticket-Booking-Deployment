@@ -97,7 +97,7 @@ public class SeatsController {
             model.addAttribute("arrivalTime",bookedSeats1.getTrainSchedule().getArrivalTime());
             model.addAttribute("seats",bookedSeat);
             model.addAttribute("price", Arrays.stream(bookedSeat).count()*200);
-            model.addAttribute("message","Seats booked successfully... You can see your previous bookings here...");
+            model.addAttribute("message","Seats booked successfully...!!!");
 
         }
 

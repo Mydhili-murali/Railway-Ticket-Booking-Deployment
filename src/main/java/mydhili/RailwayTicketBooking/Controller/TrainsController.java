@@ -51,7 +51,6 @@ public class TrainsController {
         model.addAttribute("message", "Successfully added !!!");
         return "addTrainSchedule";
 
-
     }
 
     @RequestMapping("/addTrainSchedule")
@@ -74,10 +73,16 @@ public class TrainsController {
         Date date = Date.valueOf(req.getParameter("date"));
         Time departingTime = Time.valueOf(req.getParameter("departingTime") + ":00");
         Time arrivalTime = Time.valueOf(req.getParameter("arrivalTime") + ":00");
-        TrainSchedule trainSchedule = new TrainSchedule(date, departingTime, arrivalTime);
-        trainSchedule.setTrains(service.getByTrainNumber(trainNumber));
-        trainScheduleService.saveTrainSchedule(trainSchedule);
-        model.addAttribute("message", "Successfully added");
+        if(service.existsById(trainNumber)){
+            TrainSchedule trainSchedule = new TrainSchedule(date, departingTime, arrivalTime);
+            trainSchedule.setTrains(service.getByTrainNumber(trainNumber));
+            trainScheduleService.saveTrainSchedule(trainSchedule);
+            model.addAttribute("message", "Successfully added");
+        }
+        else{
+            model.addAttribute("message", "Train number is invalid...Please enter the Valid train number...");
+        }
+
         return "addTrainSchedule";
 
 

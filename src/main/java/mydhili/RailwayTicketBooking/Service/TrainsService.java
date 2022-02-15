@@ -23,4 +23,9 @@ public class TrainsService {
     public List<Trains> listAllTrains() {
         return repo.findAll();
     }
+
+
+    public boolean existsById(String trainNumber) {
+        return repo.existsById(trainNumber);
+    }
 }

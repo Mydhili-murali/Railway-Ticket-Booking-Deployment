@@ -14,9 +14,9 @@ public class MyUserDetails implements UserDetails {
     private final String role;
 
     public MyUserDetails(Passengers user) {
-        this.userName=user.getUserName();
-        this.password=user.getPassword();
-        this.role=user.getRoles();
+        this.userName = user.getUserName();
+        this.password = user.getPassword();
+        this.role = user.getRoles();
     }
 
 

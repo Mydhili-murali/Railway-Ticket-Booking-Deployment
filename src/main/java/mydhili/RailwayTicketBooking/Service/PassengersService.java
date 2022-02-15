@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+
 @Transactional
 @Service
 public class PassengersService {
@@ -24,6 +25,7 @@ public class PassengersService {
     public Passengers findById(String userName) {
         return repo.findById(userName).get();
     }
+
     public List<Passengers> listAllPassengers() {
         return repo.findAll();
     }

@@ -1,4 +1,5 @@
 package mydhili.RailwayTicketBooking.Controller;
+
 import mydhili.RailwayTicketBooking.Entity.Passengers;
 
 import mydhili.RailwayTicketBooking.Service.PassengersService;
@@ -17,7 +18,6 @@ import java.security.Principal;
 public class PassengersController {
     @Autowired
     private PassengersService service;
-
 
 
     @Autowired
@@ -43,19 +43,16 @@ public class PassengersController {
         String password = req.getParameter("password");
         Long phoneNumber = Long.parseLong(req.getParameter("phNo"));
         Passengers passenger;
-        if(userName.equals("admin")){
-            passenger = new Passengers(name, userName, password, address, emailId, phoneNumber,"ROLE_ADMIN");
-        }
-        else{
-            passenger = new Passengers(name, userName, password, address, emailId, phoneNumber,"ROLE_USER");
+        if (userName.equals("admin")) {
+            passenger = new Passengers(name, userName, password, address, emailId, phoneNumber, "ROLE_ADMIN");
+        } else {
+            passenger = new Passengers(name, userName, password, address, emailId, phoneNumber, "ROLE_USER");
 
         }
-        if(!service.existsById(userName)){
+        if (!service.existsById(userName)) {
             service.savePassenger(passenger);
-        }
-        else
-        {
-            model.addAttribute("error","This username is already taken... Please choose another one !!!");
+        } else {
+            model.addAttribute("error", "This username is already taken... Please choose another one !!!");
             return "register";
         }
         model.addAttribute("message", "Successfully registered!!!!!!");
@@ -71,9 +68,9 @@ public class PassengersController {
 
 
     @GetMapping("/success")
-    public String login(Principal principal){
+    public String login(Principal principal) {
         String userName = principal.getName();
-        if (userName.equals("admin")){
+        if (userName.equals("admin")) {
             return "redirect:/addTrain";
             //return "redirect:/"+userName+"/addTrain";
         }
@@ -82,10 +79,9 @@ public class PassengersController {
     }
 
 
-
     //view for passenger profile details
     @RequestMapping("/viewProfile")
-    public String viewProfile(Model model,Principal principal) {
+    public String viewProfile(Model model, Principal principal) {
         if (principal != null) {
             String username = principal.getName();
             model.addAttribute("userName", username);
@@ -103,7 +99,7 @@ public class PassengersController {
 
     //updating passenger profile details
     @RequestMapping("/updateProfile")
-    public String updateProfile(Principal principal,Model model) {
+    public String updateProfile(Principal principal, Model model) {
         if (principal != null) {
             String username = principal.getName();
             model.addAttribute("userName", username);
@@ -119,11 +115,11 @@ public class PassengersController {
             model.addAttribute("userName", username);
         }
         Passengers passenger = service.findById(principal.getName());
-        String name=req.getParameter("name");
-        String address=req.getParameter("address");
-        String email=req.getParameter("emailId");
-        String password=req.getParameter("password");
-        Long phoneNumber=Long.parseLong(req.getParameter("phoneNumber"));
+        String name = req.getParameter("name");
+        String address = req.getParameter("address");
+        String email = req.getParameter("emailId");
+        String password = req.getParameter("password");
+        Long phoneNumber = Long.parseLong(req.getParameter("phoneNumber"));
         //passenger.getUserName();
         passenger.setPassengerName(name);
         passenger.setAddress(address);
@@ -133,7 +129,6 @@ public class PassengersController {
         service.savePassenger(passenger);
         return "redirect:/viewProfile";
     }
-
 
 
 }

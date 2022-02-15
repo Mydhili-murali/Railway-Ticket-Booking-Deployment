@@ -17,7 +17,7 @@ public class BookedSeats {
     private double price;
     @JsonIgnore
     @ManyToOne
-    private  TrainSchedule trainSchedule;
+    private TrainSchedule trainSchedule;
 
     @JsonIgnore
     @ManyToOne

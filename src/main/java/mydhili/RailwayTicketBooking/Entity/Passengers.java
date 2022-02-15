@@ -17,9 +17,9 @@ public class Passengers {
     private String password;
     @Column(nullable = false)
     private String address;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String email;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private Long phoneNumber;
 
     @OneToMany(mappedBy = "passenger")
@@ -28,11 +28,10 @@ public class Passengers {
     private String roles;
 
 
-
     public Passengers() {
     }
 
-    public Passengers(String passengerName, String userName, String password, String address, String email, Long phoneNumber,String roles) {
+    public Passengers(String passengerName, String userName, String password, String address, String email, Long phoneNumber, String roles) {
         this.passengerName = passengerName;
         this.userName = userName;
         this.password = password;

@@ -1,4 +1,5 @@
 package mydhili.RailwayTicketBooking.Controller;
+
 import mydhili.RailwayTicketBooking.Entity.TrainSchedule;
 import mydhili.RailwayTicketBooking.Entity.Trains;
 import mydhili.RailwayTicketBooking.Service.TrainScheduleService;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.sql.Date;
@@ -58,6 +60,7 @@ public class TrainScheduleController {
         model.addAttribute("trainSchedule", trainScheduleService.getById(id));
         return "updateTrainSchedule";
     }
+
     @PostMapping("/updateTrainSchedule/{id}")
     public String updateTrainSchedule(Principal principal, @PathVariable Long id, Model model, HttpServletRequest req) {
         TrainSchedule trainSchedule = trainScheduleService.getById(id);

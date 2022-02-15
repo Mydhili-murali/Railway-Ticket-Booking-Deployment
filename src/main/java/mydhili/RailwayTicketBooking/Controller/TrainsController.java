@@ -1,4 +1,5 @@
 package mydhili.RailwayTicketBooking.Controller;
+
 import mydhili.RailwayTicketBooking.Entity.TrainSchedule;
 import mydhili.RailwayTicketBooking.Entity.Trains;
 import mydhili.RailwayTicketBooking.Service.TrainScheduleService;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.sql.Date;

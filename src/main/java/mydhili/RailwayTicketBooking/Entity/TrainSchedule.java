@@ -12,8 +12,7 @@ public class TrainSchedule {
     @Id
     @GeneratedValue
     private Long id;
-//    @Column(nullable = false)
-//    private String station;
+
     @Column(nullable = false)
     private Date date;
     @Column(nullable = false)
@@ -30,7 +29,7 @@ public class TrainSchedule {
     public TrainSchedule() {
     }
 
-    public TrainSchedule( Date date, Time departingTime, Time arrivalTime) {
+    public TrainSchedule(Date date, Time departingTime, Time arrivalTime) {
         this.date = date;
         this.departingTime = departingTime;
         this.arrivalTime = arrivalTime;

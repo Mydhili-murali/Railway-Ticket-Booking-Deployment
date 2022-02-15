@@ -12,7 +12,7 @@ public class Trains {
     private String trainNumber;
     @Column(nullable = false)
     private String trainName;
-    @Column(nullable=false)
+    @Column(nullable = false)
     private String routingFrom;
     @Column(nullable = false)
     private String routingTo;

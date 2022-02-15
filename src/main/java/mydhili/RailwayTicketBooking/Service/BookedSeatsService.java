@@ -14,7 +14,7 @@ public class BookedSeatsService {
     private BookedSeatsRepository repo;
 
     public BookedSeats getBySeatsAndTrainScheduleId(String seat, Long id) {
-        return repo.getBySeatsAndTrainScheduleId(seat,id);
+        return repo.getBySeatsAndTrainScheduleId(seat, id);
     }
 
     public void saveSeats(BookedSeats bookedSeats1) {
@@ -34,7 +34,7 @@ public class BookedSeatsService {
     }
 
     public boolean existById(Long id) {
-        return  repo.existsById(id);
+        return repo.existsById(id);
     }
 
     public void deleteById(Long id) {

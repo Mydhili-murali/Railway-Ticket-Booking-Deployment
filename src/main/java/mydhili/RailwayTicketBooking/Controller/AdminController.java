@@ -1,4 +1,5 @@
 package mydhili.RailwayTicketBooking.Controller;
+
 import mydhili.RailwayTicketBooking.Entity.Passengers;
 import mydhili.RailwayTicketBooking.Service.BookedSeatsService;
 import mydhili.RailwayTicketBooking.Service.PassengersService;
@@ -25,31 +26,31 @@ public class AdminController {
 
     //viewing registered user accounts
     @RequestMapping("/viewUsersAccount")
-    public String viewUsersAccount(Principal principal, Model model){
+    public String viewUsersAccount(Principal principal, Model model) {
         if (principal != null) {
             String username = principal.getName();
             model.addAttribute("userName", username);
         }
-    List<Passengers> usersList=passengersService.listAllPassengers();
-        ArrayList<Passengers> passengersArrayList=new ArrayList<>();
-        for(Passengers user:usersList){
-            if(!(user.getUserName().equals("admin"))){
+        List<Passengers> usersList = passengersService.listAllPassengers();
+        ArrayList<Passengers> passengersArrayList = new ArrayList<>();
+        for (Passengers user : usersList) {
+            if (!(user.getUserName().equals("admin"))) {
                 passengersArrayList.add(user);
             }
         }
-        model.addAttribute("passengers",passengersArrayList);
+        model.addAttribute("passengers", passengersArrayList);
         return "viewAccounts";
     }
 
     //deleting user account
     @RequestMapping("/deleteAccount/{id}")
-    public String deleteAccount(Principal principal,@PathVariable String id,Model model){
+    public String deleteAccount(Principal principal, @PathVariable String id, Model model) {
         if (principal != null) {
             String username = principal.getName();
             model.addAttribute("userName", username);
         }
 
-        if(bookedSeatsService.existsByPassengersUserName(id)){
+        if (bookedSeatsService.existsByPassengersUserName(id)) {
             bookedSeatsService.deleteByPassengerId(id);
         }
         passengersService.deletePassengerById(id);

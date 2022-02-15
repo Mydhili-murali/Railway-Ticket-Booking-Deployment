@@ -15,6 +15,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private MyUserDetailsService userDetailsService;
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService);
@@ -24,8 +25,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/addTrain","/viewUsersAccount","/deleteAccount/*","/adminViewTrainSchedule/*","/updateTrainSchedule/*","/addTrainDetails","/addTrainSchedule","/adminViewTrains").hasRole("ADMIN")
-                .antMatchers("/viewProfile","/updateProfile","/seatMap/*","/bookedStatus/*","/myBookings","/cancelBookings/*","/trainSchedule/*","/viewTrains").hasRole("USER")
+                .antMatchers("/addTrain", "/viewUsersAccount", "/deleteAccount/*", "/adminViewTrainSchedule/*", "/updateTrainSchedule/*", "/addTrainDetails", "/addTrainSchedule", "/adminViewTrains").hasRole("ADMIN")
+                .antMatchers("/viewProfile", "/updateProfile", "/seatMap/*", "/bookedStatus/*", "/myBookings", "/cancelBookings/*", "/trainSchedule/*", "/viewTrains").hasRole("USER")
                 .antMatchers("/").permitAll()
 //                .antMatchers("/*").hasRole("USER")
                 .and().formLogin().loginPage("/login").defaultSuccessUrl("/success");
@@ -40,8 +41,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                .logout()
 //                .permitAll();
     }
+
     @Bean
-    public PasswordEncoder getPasswordEncoder(){
+    public PasswordEncoder getPasswordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
 
